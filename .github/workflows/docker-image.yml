@@ -11,9 +11,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      DOCKER_TARGET_PLATFORM: linux/arm/v8
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker buildx build ./arm64 --platform linux/arm/v8 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
+    - uses: uraimo/run-on-arch-action@v2.2.0
+      name: Run Commands
+      id: runcmd
+      with:
+        arch: aarch64
+        distro: ubuntu_latest
+        run: docker build ./arm64 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
