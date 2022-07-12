@@ -20,5 +20,5 @@ jobs:
           arch: aarch64
           distro: ubuntu_latest
           shell: /bin/bash
-          run: sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-          run: docker buildx build ./arm64 --platform linux/arm64 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
+          run: sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin && docker buildx build ./arm64 --platform 
+linux/arm64 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
