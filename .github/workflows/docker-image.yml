@@ -21,6 +21,6 @@ jobs:
           githubToken: ${{ github.token }}
           distro: ubuntu_latest
           shell: /bin/bash
-          dockerRunArgs: --net=host --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --cap-add=CAP_SYS_RAWIO --name domotz-agent -d
+          name: domotz-agent-arm64
           install: apt-get update && apt-get install -y --no-install-recommends ca-certificates iputils-ping net-tools iproute2 openssh-client wget
           run: wget https://portal.domotz.com/download/agent_packages/domotz-debian-arm64-1.0-2.9.0-4.1.1-b001-0036.deb && dpkg -i domo* && systemctl enable domotz
