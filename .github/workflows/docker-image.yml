@@ -7,16 +7,17 @@ on:
     branches: [ "master" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
+    name: Buld on Ubuntu Latest arm64
+
     steps:
-    - uses: actions/checkout@v3
-    - uses: uraimo/run-on-arch-action@v2.2.0
-      name: Run Commands
-      id: runcmd
-      with:
-        arch: aarch64
-        distro: ubuntu_latest
+      - uses: actions/checkout@v3
+      - uses: uraimo/run-on-arch-action@v2.2.0
+        name: Run Commands
+        id: build
+        with:
+          arch: aarch64
+          distro: ubuntu_latest
+        shell: /bin/bash
         run: docker buildx build ./arm64 --platform linux/arm64 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
