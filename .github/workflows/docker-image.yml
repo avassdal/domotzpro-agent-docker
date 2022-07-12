@@ -21,9 +21,6 @@ jobs:
           githubToken: ${{ github.token }}
           distro: ubuntu_latest
           shell: /bin/bash
-          dockerRunArgs: --net=host --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --cap-add=CAP_SYS_RAWIO --mount type=bind,source=/mnt/data/domotz/config/domotz.json,target=/opt/domotz/etc/domotz.json --name 
-domotz-agent -d ubuntu_latest
+          dockerRunArgs: --net=host --cap-add=NET_ADMIN --cap-add=SYS_ADMIN --cap-add=CAP_SYS_RAWIO --mount type=bind,source=/mnt/data/domotz/config/domotz.json,target=/opt/domotz/etc/domotz.json --name domotz-agent -d ubuntu_latest
           install: apt-get update && apt-get install -y --no-install-recommends ca-certificates iputils-ping net-tools iproute2 openssh-client wget
-          run: wget https://portal.domotz.com/download/agent_packages/domotz-debian-arm64-1.0-2.9.0-4.1.1-b001-0036.deb /root/ && printf "#!/bin/sh\necho N 2" > /sbin/runlevel && chmod +x /sbin/runlevel  
-&& printf "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d  && chmod +x /usr/sbin/policy-rc.d  && dpkg -i /root/domotz-debian-*.deb && rm /root/domotz-debian-*.deb && rm -rf /var/lib/apt/lists/* && sytemctl 
-enable domotz
+          run: wget https://portal.domotz.com/download/agent_packages/domotz-debian-arm64-1.0-2.9.0-4.1.1-b001-0036.deb /root/ && printf "#!/bin/sh\necho N 2" > /sbin/runlevel && chmod +x /sbin/runlevel && printf "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d  && chmod +x /usr/sbin/policy-rc.d  && dpkg -i /root/domotz-debian-*.deb && rm /root/domotz-debian-*.deb && rm -rf /var/lib/apt/lists/* && sytemctl enable domotz
