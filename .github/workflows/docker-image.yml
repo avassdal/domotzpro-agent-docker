@@ -12,8 +12,8 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      DOCKER_TARGET_PLATFORM: linux/arm/v7
+      DOCKER_TARGET_PLATFORM: linux/arm/v8
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker buildx build ./arm64 --platform linux/arm/v7 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
+      run: docker buildx build ./arm64 --platform linux/arm/v8 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
