@@ -18,6 +18,7 @@ jobs:
         id: build
         with:
           arch: aarch64
+          githubToken: ${{ github.token }}
           distro: ubuntu_latest
           shell: /bin/bash
           install: apt-get update && apt-get install -y --no-install-recommends ca-certificates iputils-ping net-tools iproute2 openssh-client wget
