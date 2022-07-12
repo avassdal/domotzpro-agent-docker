@@ -19,4 +19,4 @@ jobs:
       with:
         arch: aarch64
         distro: ubuntu_latest
-        run: docker build ./arm64 --platform linux/arm64 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
+        run: docker buildx build ./arm64 --platform linux/arm64 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
