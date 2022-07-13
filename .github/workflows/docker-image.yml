@@ -22,6 +22,6 @@ jobs:
           distro: ubuntu_latest
           shell: /bin/bash
           name: domotz-agent-arm64
-          install: apt-get update && apt-get install -y --no-install-recommends ca-certificates iputils-ping net-tools iproute2 openssh-client wget
-          run: wget https://portal.domotz.com/download/agent_packages/domotz-debian-arm64-1.0-2.9.0-4.1.1-b001-0036.deb && printf "#!/bin/sh\necho N 2" > /sbin/runlevel && chmod +x /sbin/runlevel && printf "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d  && chmod +x /usr/sbin/policy-rc.d  && dpkg -i domotz* && rm domotz* && rm -rf /var/lib/apt/lists/*
+          install: apt-get update && apt-get install -y --install-recommends docker 
+          run: docker buildx build ./arm64 --platform linux/arm64 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
 
