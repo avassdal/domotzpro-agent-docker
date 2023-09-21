@@ -21,7 +21,6 @@ jobs:
           githubToken: ${{ github.token }}
           distro: ubuntu_latest
           shell: /bin/bash
-          name: domotz-agent-arm64
           install: apt-get update && apt-get install -y --install-recommends docker 
           run: docker buildx build ./arm64 --platform linux/arm64 --file ./arm64/Dockerfile --tag domotz-agent-arm64:$(date +%s)
 
